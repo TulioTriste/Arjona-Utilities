@@ -29,6 +29,14 @@ public abstract class Button {
         CompatibleSound.CLICK.play(player, 20F, 1F);
     }
 
+    public static Button fromItem(ItemStack itemStack) {
+        return (new Button() {
+            public ItemStack getButtonItem(Player player) {
+                return itemStack;
+            }
+        });
+    }
+
     public abstract ItemStack getButtonItem(Player player);
 
     public void clicked(Player player, int slot, ClickType clickType, int hotbarButton) { }

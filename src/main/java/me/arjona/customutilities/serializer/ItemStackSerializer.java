@@ -31,11 +31,8 @@ public class ItemStackSerializer {
     public ItemStack itemFrom64(String data) throws IOException {
         try {
             ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(data));
-            BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);
-            try {
+            try (BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream)) {
                 return (ItemStack) dataInput.readObject();
-            } finally {
-                dataInput.close();
             }
         }
         catch (ClassNotFoundException e) {
