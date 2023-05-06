@@ -77,6 +77,17 @@ public abstract class Menu {
             inventory.setItem(buttonEntry.getKey(), createItemStack(player, buttonEntry.getValue()));
         }
 
+        if (this.isPlaceholder()) {
+            Button fillButton = this.getPlaceholderButton() == null ? placeholderButton : this.getPlaceholderButton();
+
+            for (int index = 0; index < size; index++) {
+                if (this.buttons.get(index) == null) {
+                    this.buttons.put(index, fillButton);
+                    inventory.setItem(index, fillButton.getButtonItem(player));
+                }
+            }
+        }
+
         if (this.isFillBorders()) {
             Button fillButton = this.getPlaceholderButton() == null ? placeholderButton : this.getPlaceholderButton();
 
@@ -86,17 +97,6 @@ public abstract class Menu {
                         this.buttons.put(index, fillButton);
                         inventory.setItem(index, fillButton.getButtonItem(player));
                     }
-                }
-            }
-        }
-
-        if (this.isPlaceholder()) {
-            Button fillButton = this.getPlaceholderButton() == null ? placeholderButton : this.getPlaceholderButton();
-
-            for (int index = 0; index < size; index++) {
-                if (this.buttons.get(index) == null) {
-                    this.buttons.put(index, fillButton);
-                    inventory.setItem(index, fillButton.getButtonItem(player));
                 }
             }
         }
