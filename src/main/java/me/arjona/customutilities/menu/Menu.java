@@ -25,6 +25,7 @@ public abstract class Menu {
     private boolean updateAfterClick;
     private boolean closedByMenu;
     private boolean placeholder;
+    private boolean fillBorders;
     private boolean cancelPlayerInventory = true;
 
     private Button placeholderButton = Button.placeholder(Material.STAINED_GLASS_PANE, 7, " ");
@@ -74,6 +75,19 @@ public abstract class Menu {
 
         for (Map.Entry<Integer, Button> buttonEntry : this.buttons.entrySet()) {
             inventory.setItem(buttonEntry.getKey(), createItemStack(player, buttonEntry.getValue()));
+        }
+
+        if (this.isFillBorders()) {
+            Button fillButton = this.getPlaceholderButton() == null ? placeholderButton : this.getPlaceholderButton();
+
+            for (int index = 0; index < size; index++) {
+                if (index < 9 || index >= size - 9 || index % 9 == 0 || index % 9 == 8) {
+                    if (this.buttons.get(index) == null) {
+                        this.buttons.put(index, fillButton);
+                        inventory.setItem(index, fillButton.getButtonItem(player));
+                    }
+                }
+            }
         }
 
         if (this.isPlaceholder()) {
