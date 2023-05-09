@@ -2,6 +2,7 @@ package me.arjona.customutilities.menu.pagination;
 
 import lombok.AllArgsConstructor;
 import me.arjona.customutilities.CC;
+import me.arjona.customutilities.compatibility.material.CompatibleMaterial;
 import me.arjona.customutilities.item.ItemBuilder;
 import me.arjona.customutilities.menu.Button;
 import org.bukkit.Material;
@@ -21,13 +22,13 @@ public class PageButton extends Button {
     public ItemStack getButtonItem(Player player) {
         if (this.hasNext(player)) {
             return this.mod > 0 ?
-                    new ItemBuilder(Material.REDSTONE_TORCH_ON)
+                    new ItemBuilder(CompatibleMaterial.REDSTONE_TORCH_ON.getMaterial())
                     .name(CC.GREEN + "Next Page")
                     .lore(Arrays.asList(
                             CC.YELLOW + "Click here to go",
                             CC.YELLOW + "to the next page."
                     )).build() :
-                    new ItemBuilder(Material.REDSTONE_TORCH_ON)
+                    new ItemBuilder(CompatibleMaterial.REDSTONE_TORCH_ON.getMaterial())
                     .name(CC.GREEN + "Previous Page")
                     .lore(Arrays.asList(
                             CC.YELLOW + "Click here to go",
@@ -35,13 +36,13 @@ public class PageButton extends Button {
                     )).build();
         } else {
             return this.mod > 0 ?
-                    new ItemBuilder(Material.LEVER)
+                    new ItemBuilder(CompatibleMaterial.LEVER.getMaterial())
                     .name(CC.GRAY + "Next Page")
                     .lore(Arrays.asList(
                             CC.YELLOW + "no more pages",
                             CC.YELLOW + "available."
                     )).build() :
-                    new ItemBuilder(Material.LEVER)
+                    new ItemBuilder(CompatibleMaterial.LEVER.getMaterial())
                     .name(CC.GRAY + "Previous Page")
                     .lore(Arrays.asList(
                             CC.YELLOW + "no more previous",
