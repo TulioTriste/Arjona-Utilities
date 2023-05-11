@@ -1,7 +1,7 @@
 package me.arjona.customutilities;
 
 import lombok.experimental.UtilityClass;
-import org.apache.commons.lang3.text.WordUtils;
+import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 
 import java.util.*;
